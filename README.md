@@ -1,5 +1,5 @@
-# PHPConvertMataUang
-PHP Converter Mata Uang Dollar ke Rupiah dan Rupiah ke Dollar
+# PHP CLI Convert Mata Uang
+PHP CLI Converter Mata Uang Dollar ke Rupiah dan Rupiah ke Dollar
 
 # Usage
 - Dollar ke Rupiah
