@@ -1,6 +1,5 @@
 # PHP CLI Convert Kurs
-PHP CLI Converter Realtime Kurs Dollar ke Rupiah dan Rupiah ke Dollar
+PHP CLI Converter Realtime Kurs Mata Uang Dollar ke Rupiah dan Rupiah ke Dollar
 
 # Usage
-~# php convertdollartorupiah.php
-~# php convertrupiahtodollar.php
+- running php [file]
