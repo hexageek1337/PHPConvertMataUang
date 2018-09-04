@@ -1,21 +1,47 @@
 <?php
-if (!isset($argv[1])){
-	echo "Parameter Tidak Valid\n";
-	echo "Usage : php ".$argv[0]." [dollar]\n";
-	echo "Example : php ".$argv[0]." 2";
-} elseif (!intval($argv[1])){
-	echo "Parameter Tidak Bernilai Integer\n";
-	echo "Usage : php ".$argv[0]." [dollar]\n";
-	echo "Example : php ".$argv[0]." 2";
-} else {
-	$parameter_dollar = $argv[1];
-	$rupiah = 13513;
-	echo "===========================================\n";
-	echo "Status Rupiah per dollar saat ini => ".$rupiah."\n";
-	echo "===========================================\n";
-	echo "Waiting ...\n\n";
-	sleep(3);
-	$convert = $parameter_dollar * $rupiah;
-	echo "Convert ".$parameter_dollar." Dollar => ".$convert."\n";
-	echo "===========================================\n";
+require_once('vendor/autoload.php');
+ 
+use DiDom\Document;
+
+/**
+ * 
+ */
+class ConvertDollarRupiah
+{
+	
+	function __construct()
+	{
+		#
+	}
+
+	private function curi()
+	{
+		$url = 'https://kursdollar.net/real-time/USD/';
+		$document = new Document($url, true);
+
+		$kurs = $document->find('td')[3];
+
+		// var_dump($kurs);
+
+		return $kurs;
+	}
+
+	public function run()
+	{
+		$rupiah = str_replace(' ', '', $this->curi()->text());
+		$rupiah = doubleval($rupiah);
+		echo "===========================================\n";
+		echo "[+] Status => ".$this->curi()->text()."/USD\n";
+		echo "===========================================\n";
+		echo "[-] Jumlah USD : ";
+		$parameter_dollar = trim(fgets(STDIN));
+		sleep(3);
+		echo "===========================================\n";
+		$convert = $parameter_dollar * $rupiah;
+		echo "[=] Convert ".$parameter_dollar." Dollar => Rp.".$convert."\n";
+		echo "===========================================\n";
+	}
 }
+
+$t = new ConvertDollarRupiah;
+$t->run();
